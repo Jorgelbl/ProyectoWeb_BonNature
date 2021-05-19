@@ -1,0 +1,93 @@
+<?php
+	include_once 'conexion.php';
+
+	$sentencia_select=$con->prepare('SELECT *FROM usuarios  ORDER BY id DESC');
+	$sentencia_select->execute();
+	$resultado=$sentencia_select->fetchAll();
+
+
+?>
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="uft-8">
+	<title>Nuevo Usuario</title>
+	<link rel="stylesheet" href="estilos.css">
+</head>
+<body>
+	<body background="img/Natu.jpg">
+	<header>
+		<div class="contenedor">
+			<div class="logo">
+				<h2><center><img src="img/logo2.png"></center></h2>
+				<h2><center>BON NATURE</center></h2>		
+			</div>	
+		</div>
+	</header>
+	<div class="navegacion">
+		<nav>
+			<ul class="clearfix">
+				<h2><center><li><a href="Agregar.php">ALTA DE REGISTROS</a></center></h2>
+			
+			</ul>
+		</nav>
+	</div>
+
+<!--En esta parte comienza el formulario agregar-->
+
+	<h2>LISTADO DE REGISTROS</h2>
+
+		<table>
+			<tr class="head">
+				<td>Id</td>
+				<td>Nombre</td>
+				<td>Telefono</td>
+				<td>Direccion</td>
+				<td>Correo</td>
+				<td colspan="2"></td>
+			</tr>
+			<?php foreach($resultado as $fila):?>
+				<tr >
+					<td><?php echo $fila['id']; ?></td>
+					<td><?php echo $fila['nombre']; ?></td>
+					<td><?php echo $fila['telefono']; ?></td>
+					<td><?php echo $fila['direccion']; ?></td>
+					<td><?php echo $fila['correo']; ?></td>
+
+				</tr>
+			<?php endforeach ?>
+
+		</table>
+<!--En esta parte son los botones de regresar y agregar registro-->
+
+		<form action="" method="post">
+			<div class="btn__group">
+				<a href="index.php" class="btn btn__danger">Regresar</a>
+
+			<form action="" class="formulario" method="post">
+				<a href="insert.php" class="btn btn__nuevo">Agregar Registro</a>
+			</form>
+			</div>
+		</form>
+
+	</div>
+
+<!--En esta parte termina el formulario agregar-->
+
+<!--En esta parte es el pie de pagina-->
+
+	<footer>
+		<div class="contenedor">
+			<div class="Nosotros">
+				<h2>Sobre nosotros</h2>
+				<center><p>Somos una Empresa Sustentable</p></center>
+			</div>
+
+		</div>
+		<p class="copyright">
+			JORGE LUIS LUCIANO BENITEZ
+		</p>
+	</footer>
+</body>
+</html>
